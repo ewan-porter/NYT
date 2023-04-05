@@ -14,7 +14,7 @@ export const Title = styled(Link)`
 
 export const Flex = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
@@ -26,6 +26,6 @@ export const Image = styled.img`
   height: 204px;
   overflow: hidden;
   object-fit: cover;
-  padding: 20px 20px;
+  padding: 20px 0;
   opacity: 0.8;
 `;

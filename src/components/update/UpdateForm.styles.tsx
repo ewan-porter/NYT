@@ -29,6 +29,8 @@ export const EditInput = styled.input`
   width: 100%;
   padding-left: 5px;
   font-size: 16px;
+  font-family: "Lato";
+  font-weight: 700;
   color: #5b5b5b;
   outline: none;
   -moz-appearance: textfield;
@@ -51,6 +53,13 @@ export const EditLabel = styled.label`
   justify-content: center;
   align-items: center;
   color: #fff;
+`;
+
+export const EditUnit = styled.span`
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
 `;
 
 export const Button = styled.button`

@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   SidebarButton,
   SidebarContainer,
@@ -57,24 +57,22 @@ const Sidebar = () => {
       </SidebarButton>
 
       {linksArray.map(({ icon, label, to }, i) => (
-        <SidebarLinkContainer
-          key={i}
-          isActive={pathname === to}
-          isOpen={sidebarOpen}
-        >
-          <SidebarLink
-            to={to}
-            style={!sidebarOpen ? { width: `fit-content` } : {}}
-          >
-            <SidebarLinkIcon>{icon}</SidebarLinkIcon>
-            {sidebarOpen && (
-              <>
-                <SidebarLinkLabel>{label}</SidebarLinkLabel>
-              </>
-            )}
-          </SidebarLink>{" "}
+        <React.Fragment key={i}>
+          <SidebarLinkContainer isActive={pathname === to} isOpen={sidebarOpen}>
+            <SidebarLink
+              to={to}
+              style={!sidebarOpen ? { width: `fit-content` } : {}}
+            >
+              <SidebarLinkIcon>{icon}</SidebarLinkIcon>
+              {sidebarOpen && (
+                <>
+                  <SidebarLinkLabel>{label}</SidebarLinkLabel>
+                </>
+              )}
+            </SidebarLink>{" "}
+          </SidebarLinkContainer>{" "}
           <SidebarDivider isActive={pathname === to} isOpen={sidebarOpen} />
-        </SidebarLinkContainer>
+        </React.Fragment>
       ))}
     </SidebarContainer>
   );

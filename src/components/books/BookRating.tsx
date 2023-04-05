@@ -39,7 +39,11 @@ const BookRating = ({ initialRating = 0, book }: Props) => {
             onMouseEnter={() => setHover(i)}
             onMouseLeave={() => setHover(rating)}
           >
-            {i <= (hover || rating) ? <BsStarFill /> : <BsStar />}
+            {i <= (hover || rating) ? (
+              <BsStarFill color="#E08D3A" />
+            ) : (
+              <BsStar />
+            )}
           </LikeLink>
         );
       })}

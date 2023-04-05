@@ -5,6 +5,8 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import { IconContext } from "react-icons";
+// import * as dotenv from "dotenv";
+// dotenv.config();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

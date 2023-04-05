@@ -13,7 +13,6 @@ export const Search = styled.div`
 
 export const SearchIcon = styled.div`
   border-radius: 41px 0 0 41px;
-  color: #5b5b5b;
   padding-left: 1px;
   width: 50px;
   display: flex;
@@ -49,4 +48,5 @@ export const Submit = styled.button`
 
 export const SubmitText = styled.h4`
   text-transform: uppercase;
+  color: #ffffff;
 `;

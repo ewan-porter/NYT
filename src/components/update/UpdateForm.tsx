@@ -5,6 +5,7 @@ import {
   Edit,
   EditInput,
   EditLabel,
+  EditUnit,
   Heading,
   LinkContainer,
   LinkText,
@@ -94,7 +95,7 @@ const UpdateForm = ({ price, rating = 0, id }: Props) => {
             onChange={handleChange("price")}
             onKeyDown={numberInputKeyDown}
           ></EditInput>
-          <span style={{ marginRight: 60 }}>GBP</span>
+          <EditUnit style={{ marginRight: 60 }}>GBP</EditUnit>
         </Edit>
 
         <Edit>

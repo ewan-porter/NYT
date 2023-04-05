@@ -52,7 +52,9 @@ export const SidebarDivider = styled.div<{
   display: ${({ isActive }) => (!isActive ? `block` : `none`)};
   width: 70%;
   background-color: #e8f0f8;
-  margin: 0 5px;
+  margin: 5px;
+  justify-self: end;
+  margin-bottom: -1px;
 `;
 
 export const SidebarLinkContainer = styled.div<{
@@ -60,7 +62,7 @@ export const SidebarLinkContainer = styled.div<{
   isOpen: boolean;
 }>`
   border-radius: 6px;
-  margin: 8px 0;
+
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -68,7 +70,6 @@ export const SidebarLinkContainer = styled.div<{
   background: ${({ isActive }) =>
     !isActive ? `` : `linear-gradient(180deg, #679CF6 0%, #4072EE 100%);`};
   padding: ${({ isOpen }) => (!isOpen ? `10px 5px` : `10px 5px 10px 30px`)};
-v
   box-shadow: ${({ isActive }) =>
     !isActive ? `none` : ` 0px 5px 15px #3D4C6C;`};
 

@@ -19,7 +19,7 @@ const BookSearch = ({ handleSearch }: Props) => {
     <Wrap>
       <Search>
         <SearchIcon>
-          <BsSearch />
+          <BsSearch color="#5b5b5b" />
         </SearchIcon>
         <SearchInput
           placeholder="Search"
