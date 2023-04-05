@@ -4,6 +4,7 @@ import BooksContainer from "../components/books/BooksContainer";
 import { collection, query, where } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { db } from "../service/firebase";
+import Loader from "../components/loader/Loader";
 
 // Similar set up to the best sellers page but we're fetching "liked" books now
 function Favourites() {
@@ -14,7 +15,7 @@ function Favourites() {
     <>
       <BooksContainer title="New York Times Best Sellers">
         <>
-          {loading && <p>Loading</p>}
+          {loading && <Loader size={64} color="#93B4BC" sizeUnit="px" />}
           {error && <p>Error</p>}
           {value && <BookList data={value} favourites={true} />}
         </>

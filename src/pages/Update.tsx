@@ -6,6 +6,7 @@ import { useDocumentData } from "react-firebase-hooks/firestore";
 import { doc } from "firebase/firestore";
 import { db } from "../service/firebase";
 import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../components/loader/Loader";
 
 const Update = () => {
   const { bookId } = useParams();
@@ -21,7 +22,7 @@ const Update = () => {
   return (
     <UpdateContainer>
       <>
-        {loading && <p>Loading</p>}
+        {loading && <Loader size={64} color="#93B4BC" sizeUnit="px" />}
         {error && <p>Error</p>}
         {value && (
           <>

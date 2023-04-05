@@ -4,6 +4,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { db } from "../service/firebase";
 import BooksContainer from "../components/books/BooksContainer";
 import BookList from "../components/books/BookList";
+import Loader from "../components/loader/Loader";
 
 // Our best sellers page - pulls data from firebase and displays to the user
 // or shows errors or loading
@@ -16,7 +17,7 @@ function BestSellers() {
     <>
       <BooksContainer title="New York Times Best Sellers">
         <>
-          {loading && <p>Loading</p>}
+          {loading && <Loader size={64} color="#93B4BC" sizeUnit="px" />}
           {error && <p>Error</p>}
           {value && <BookList data={value} />}
         </>
