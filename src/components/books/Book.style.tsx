@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  margin: 10px 0;
+  margin: 10px 10px;
   padding: 0 10px;
   @media (max-width: 768px) {
     flex-direction: column;
@@ -18,6 +19,7 @@ export const Container = styled.div`
 export const Flex = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const Title = styled.h3`
@@ -28,9 +30,28 @@ export const Title = styled.h3`
 `;
 
 export const Author = styled.p`
-  font-size: 16px;
-  color: #5b5b5b;
   text-overflow: ellipsis;
+`;
+
+export const Edit = styled(Link)`
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: #5b5b5b;
+  padding: 0 3px;
+  &:hover {
+    color: #454664;
+  }
+`;
+
+export const Delete = styled.a`
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: #5b5b5b;
+  padding: 0 3px;
+  cursor: pointer;
+  &:hover {
+    color: #454664;
+  }
 `;
 
 export const Price = styled.h4`

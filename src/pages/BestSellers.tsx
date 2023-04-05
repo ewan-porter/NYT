@@ -5,6 +5,8 @@ import { db } from "../service/firebase";
 import BooksContainer from "../components/books/BooksContainer";
 import BookList from "../components/books/BookList";
 
+// Our best sellers page - pulls data from firebase and displays to the user
+// or shows errors or loading
 function BestSellers() {
   const [value, loading, error] = useCollectionData(
     collection(db, "bestsellers")

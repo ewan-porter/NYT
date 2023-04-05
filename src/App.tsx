@@ -1,14 +1,17 @@
-import './App.css';
-import Navbar from './components/navbar/Navbar';
-import Routes from './router/Routes';
-import MyComponent from './service/api';
-import React from 'react';
+import "./App.css";
+import Navbar from "./components/navbar/Navbar";
+import Sidebar from "./components/navbar/Sidebar";
+import Routes from "./router/Routes";
+import { fetchDataAndPostToFirestore } from "./service/api";
+import React from "react";
 
 function App() {
+  // Set an interval for a function that fetches from NYT and posts to firebase every 24 hrs - in a real world scenario this would be a cron job on the backend
+  setInterval(fetchDataAndPostToFirestore, 1000 * 60 * 60 * 24);
   return (
-    <div className='App'>
-      {/* <MyComponent /> */}
+    <div className="App">
       <Navbar />
+      <Sidebar />
       <Routes />
     </div>
   );

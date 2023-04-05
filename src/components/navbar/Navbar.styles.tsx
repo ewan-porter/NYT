@@ -1,12 +1,14 @@
 // styled navbar elements
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const NavBar = styled.div`
   width: 100vw;
   background-color: #ffffff;
-  height: 50px;
+  height: 74px;
   display: flex;
+  z-index: 100;
+  position: fixed;
 `;
 
 export const UserContainer = styled.div`
@@ -14,7 +16,10 @@ export const UserContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
+  width: 81px;
+  @media (max-width: 768px) {
+    width: 50px;
+  }
 `;
 
 export const UserImage = styled.img`

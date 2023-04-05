@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import { db } from "./firebase";
 import { setDoc, doc, getDoc } from "firebase/firestore";
-
 import axios from "axios";
+
+// To help us persist the front end state (favourites, rating etc) I hooked the app up to a firebase instance
+// All our data is stored there and means we can mutate it more easily
+// Wrote some reusable functions for interacting with the db
+// I also used a third party library the allowed for easier fetching from firecloud
 
 export interface IData {
   status: string;
@@ -53,7 +57,8 @@ export interface Review {
   article_chapter_link: string;
 }
 
-const fetchDataAndPostToFirestore = async () => {
+// Function to fetch from the NYT api and post it to firebase
+export const fetchDataAndPostToFirestore = async () => {
   try {
     const { data } = await axios<IData>({
       method: "get",
@@ -64,7 +69,7 @@ const fetchDataAndPostToFirestore = async () => {
     });
 
     data.results.forEach(async (item) => {
-      const docRef = await setDoc(
+      await setDoc(
         doc(db, "bestsellers", `${item.book_details[0].primary_isbn13}`),
         {
           id: item.book_details[0].primary_isbn13,
@@ -72,11 +77,6 @@ const fetchDataAndPostToFirestore = async () => {
           description: item.book_details[0].description,
           author: item.book_details[0].author,
           price: item.book_details[0].price,
-          // age_group: string;
-          // publisher: string;
-          // isbns: Isbn[];
-          // ranks_history: RanksHistory[];
-          // reviews: Review[];
         },
         { merge: true }
       );
@@ -86,16 +86,7 @@ const fetchDataAndPostToFirestore = async () => {
   }
 };
 
-const MyComponent: React.FC = () => {
-  useEffect(() => {
-    fetchDataAndPostToFirestore();
-  }, []);
-
-  return null;
-};
-
-export default MyComponent;
-
+// Reusable function for liking books
 export const likeBook = async (book: string) => {
   const ref = (await getDoc(doc(db, "bestsellers", `${book}`))).data();
 
@@ -111,11 +102,24 @@ export const likeBook = async (book: string) => {
   );
 };
 
+// Reusable function for rating books
 export const rateBook = async (book: string, rating: number) => {
   setDoc(
     doc(db, "bestsellers", `${book}`),
     {
       rating: rating,
+    },
+    { merge: true }
+  );
+};
+
+// Reusable function for editing book prices
+
+export const editPrice = async (book: string, price: string) => {
+  setDoc(
+    doc(db, "bestsellers", `${book}`),
+    {
+      price: price,
     },
     { merge: true }
   );

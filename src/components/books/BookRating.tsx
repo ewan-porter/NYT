@@ -8,6 +8,11 @@ type Props = {
   book: string;
 };
 type ClickHandler = (e: React.MouseEvent, i: number) => void;
+
+// This component renders a list of stars to allow users to rate books and posts the results to the firbase instance
+// Added some functionality to allow users to rate their books here rather than through the edit form
+// It kind of makes the form redundant but felt like a nice feature to include
+
 const BookRating = ({ initialRating = 0, book }: Props) => {
   const [rating, setRating] = useState(initialRating);
   const [hover, setHover] = useState(0);

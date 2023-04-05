@@ -1,11 +1,12 @@
-import React from 'react';
-import { Container } from './BooksContainer.styles';
+import React from "react";
+import { Container } from "./BooksContainer.styles";
 
 type Props = {
   title: string;
   children: JSX.Element;
 };
 
+// basic container for the books list
 const BooksContainer = ({ title, children }: Props) => {
   return (
     <Container>

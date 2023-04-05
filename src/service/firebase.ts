@@ -1,23 +1,23 @@
-// Import the functions you need from the SDKs you need
+//Firebase connection
 
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAtvpNnn3G9nAfLWuEtaE-648zD_NfXzXw',
+  apiKey: process.env.FIREBASE_API_KEY,
 
-  authDomain: 'bestsellers-503b0.firebaseapp.com',
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
 
-  projectId: 'bestsellers-503b0',
+  projectId: process.env.FIREBASE_PROJECT_ID,
 
-  storageBucket: 'bestsellers-503b0.appspot.com',
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
 
-  messagingSenderId: '455449069033',
+  messagingSenderId: process.env.FIREBASE_SENDER_ID,
 
-  appId: '1:455449069033:web:c4283cf7ecc9f0803cb778',
+  appId: process.env.FIREBASE_APP_ID,
 
-  measurementId: 'G-MTRTNKWQQ8',
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);

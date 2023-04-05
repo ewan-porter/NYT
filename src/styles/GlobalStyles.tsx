@@ -1,6 +1,6 @@
 // Global styles for styled-components
 
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 
@@ -30,6 +30,10 @@ h4 {
   color: #454664;
   font-size: 16px;
   font-weight: 700;
+}
+p {
+  font-size: 16px;
+  color: #5b5b5b;
 }
 `;
 
