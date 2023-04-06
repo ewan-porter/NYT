@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { db } from "./firebase";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import axios from "axios";
@@ -8,14 +8,18 @@ import axios from "axios";
 // Wrote some reusable functions for interacting with the db
 // I also used a third party library the allowed for easier fetching from firecloud
 
-export interface IData {
-  status: string;
-  copyright: string;
-  num_results: number;
-  last_modified: Date;
-  results: Result[];
+export interface BookDetail {
+  title: string;
+  description: string;
+  contributor: string;
+  author: string;
+  contributor_note: string;
+  price: string;
+  age_group: string;
+  publisher: string;
+  primary_isbn13: string;
+  primary_isbn10: string;
 }
-
 export interface Result {
   list_name: string;
   display_name: string;
@@ -31,18 +35,12 @@ export interface Result {
   book_details: BookDetail[];
   reviews: Review[];
 }
-
-export interface BookDetail {
-  title: string;
-  description: string;
-  contributor: string;
-  author: string;
-  contributor_note: string;
-  price: string;
-  age_group: string;
-  publisher: string;
-  primary_isbn13: string;
-  primary_isbn10: string;
+export interface IData {
+  status: string;
+  copyright: string;
+  num_results: number;
+  last_modified: Date;
+  results: Result[];
 }
 
 export interface Isbn {
@@ -60,7 +58,9 @@ export interface Review {
 // Function to fetch from the NYT api and post it to firebase
 export const fetchDataAndPostToFirestore = async () => {
   try {
-    const { data } = await axios<IData>({
+    const {
+      data: { results },
+    } = await axios<IData>({
       method: "get",
       url: "https://api.nytimes.com/svc/books/v3/lists.json?api-key=FGABxA5DDEtYZPrmSmVWYxwImNQcLTrH",
       params: {
@@ -68,19 +68,25 @@ export const fetchDataAndPostToFirestore = async () => {
       },
     });
 
-    data.results.forEach(async (item) => {
-      await setDoc(
-        doc(db, "bestsellers", `${item.book_details[0].primary_isbn13}`),
-        {
-          id: item.book_details[0].primary_isbn13,
-          title: item.book_details[0].title,
-          description: item.book_details[0].description,
-          author: item.book_details[0].author,
-          price: item.book_details[0].price,
-        },
-        { merge: true }
-      );
-    });
+    console.log(results);
+
+    results.forEach(
+      async ({
+        book_details: [{ title, primary_isbn13, description, author, price }],
+      }) => {
+        await setDoc(
+          doc(db, "bestsellers", `${primary_isbn13}`),
+          {
+            id: primary_isbn13,
+            title: title,
+            description: description,
+            author: author,
+            price: price,
+          },
+          { merge: true }
+        );
+      }
+    );
   } catch (error) {
     console.error(error);
   }

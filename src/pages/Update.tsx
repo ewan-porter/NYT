@@ -5,16 +5,12 @@ import UpdateForm from "../components/update/UpdateForm";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { doc } from "firebase/firestore";
 import { db } from "../service/firebase";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loader from "../components/loader/Loader";
 
 const Update = () => {
-  const { bookId } = useParams();
-  const navigate = useNavigate();
+  const { bookId } = useParams<{ bookId: string }>();
 
-  if (bookId == undefined) {
-    navigate("/favourites");
-  }
   const [value, loading, error] = useDocumentData(
     doc(db, "bestsellers", bookId!)
   );

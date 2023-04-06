@@ -1,5 +1,5 @@
 import React from "react";
-import { getFirestore, collection } from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { db } from "../service/firebase";
 import BooksContainer from "../components/books/BooksContainer";

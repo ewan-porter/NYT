@@ -26,31 +26,33 @@ type ClickHandler = (e: React.MouseEvent) => void;
 
 // Our Book component for displaying an individual book in the list
 
-const Book = ({ item, favourites }: Props) => {
-
+const Book = ({
+  item: { title, id, author, price, rating, liked },
+  favourites,
+}: Props) => {
   // Click handler for adding liked books to the firebase instance
   const handleClick: ClickHandler = (e) => {
     e.preventDefault();
-    likeBook(item.id);
+    likeBook(id);
   };
   return (
     <Container>
       <Flex>
         <BsBook />
-        <Title>{item.title}</Title>
-        <Author>by {item.author}</Author>
+        <Title>{title}</Title>
+        <Author>by {author}</Author>
       </Flex>
       <Flex>
-        <BookRating initialRating={item?.rating} book={item.id} />
-        <Price>{Math.round(item.price)} GBP</Price>
+        <BookRating initialRating={rating} book={id} />
+        <Price>{Math.round(price)} GBP</Price>
         {favourites && (
           <Flex>
-            <Edit to={`update/${item.id}`}>Edit</Edit>
+            <Edit to={`${id}`}>Edit</Edit>
             <Delete onClick={handleClick}>Delete</Delete>
           </Flex>
         )}
         <LikeLink onClick={handleClick}>
-          {item.liked === true ? <HeartFilled /> : <Heart />}
+          {liked === true ? <HeartFilled /> : <Heart />}
         </LikeLink>
       </Flex>
     </Container>
