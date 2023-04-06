@@ -62,13 +62,11 @@ export const fetchDataAndPostToFirestore = async () => {
       data: { results },
     } = await axios<IData>({
       method: "get",
-      url: "https://api.nytimes.com/svc/books/v3/lists.json?api-key=FGABxA5DDEtYZPrmSmVWYxwImNQcLTrH",
+      url: `${process.env.REACT_APP_NYT_ENDPOINT}?api-key=${process.env.REACT_APP_NYT_API_KEY}`,
       params: {
         list: "Combined Print and E-Book Fiction",
       },
     });
-
-    console.log(results);
 
     results.forEach(
       async ({

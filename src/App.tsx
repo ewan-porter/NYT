@@ -9,7 +9,6 @@ function App() {
   // Set an interval for a function that fetches from NYT and posts to firebase every 24 hrs
   // in a real world scenario this would be a cron job on the backend since this will only execte if someone is on the server
   setInterval(fetchDataAndPostToFirestore, 1000 * 60 * 60 * 24);
-  fetchDataAndPostToFirestore();
   return (
     <div className="App">
       <Navbar />
